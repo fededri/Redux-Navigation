@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "955201045122",
+    "firebase_url": "https://testaudio-312dc.firebaseio.com",
+    "project_id": "testaudio-312dc",
+    "storage_bucket": "testaudio-312dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:955201045122:android:8e66c65605ee0e73",
+        "android_client_info": {
+          "package_name": "com.auth"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "955201045122-tckghvafpsklu0l8l37rurkope1d7f2a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAKw7Kw7Oo0oOIKw7OGyPTxnyPzkSPFo5w"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
