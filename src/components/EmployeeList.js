@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View,Text, ListView} from 'react-native';
+import {View,Text, ListView, TouchableWithoutFeedback} from 'react-native';
 import {connect} from 'react-redux';
 import {employeesFetch} from '../actions'
 import _ from 'lodash';
@@ -9,6 +9,7 @@ import ListItem from './ListItem';
 class EmployeeList extends Component {
 
     componentWillMount(){
+        console.log('Enter inside componentWillMount');
         this.props.employeesFetch();
 
         this.createDataSource(this.props)
@@ -17,7 +18,7 @@ class EmployeeList extends Component {
 
 
     componentWillReceiveProps(nextProps){
-            
+        this.props = nextProps;
         this.createDataSource(nextProps);
 
     }
@@ -28,7 +29,7 @@ class EmployeeList extends Component {
             rowHasChanged: (r1,r2) => r1 !== r2
         });
 
-        this.dataSource = ds.cloneWithRows(this.props.employees)
+        this.dataSource = ds.cloneWithRows(employees)
     }
 
     render(){
