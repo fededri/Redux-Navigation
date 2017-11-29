@@ -2,11 +2,16 @@ import React,{Component} from 'react';
 import {View,Text} from 'react-native';
 import {Card, CardSection, Button} from './common';
 import {connect} from 'react-redux';
-import {employeeUpdate, employeeCreate} from '../actions';
+import {employeeUpdate, employeeCreate, employeeFormReset} from '../actions';
 import EmployeeForm from './EmployeeForm'
 
 
 class EmployeeCreate extends Component {
+
+
+   componentWillMount(){
+    this.props.employeeFormReset();
+   }
 
 
 
@@ -50,6 +55,7 @@ const mapStateToProps = (state) => {
 export default connect(mapStateToProps,
     {
         employeeUpdate,
-        employeeCreate
+        employeeCreate,
+        employeeFormReset
     }
     )(EmployeeCreate);

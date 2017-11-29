@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
-import {Card,CardSection,Button} from './common';
+import {Card,CardSection,Button,Confirm} from './common';
 import EmployeeForm from './EmployeeForm';
 import {connect} from 'react-redux';
-import {employeeUpdate, employeeSave} from '../actions';
+import {employeeUpdate, employeeSave,employeeDelete} from '../actions';
 import _ from 'lodash';
 import Communications from 'react-native-communications';
 
 class EmployeeEdit extends Component {
+
+    state = {showModal: false};
 
     componentWillMount(){
         //this will cause that phone, shift and name of the employee were updated on the
@@ -28,14 +30,23 @@ class EmployeeEdit extends Component {
     onTextPress(){
         const {phone,shift} = this.props;
         Communications.text(phone,`Your upcoming shift is on ${shift}`);
-        
+
+    }
+
+    onDecline(){
+        this.setState({showModal: false})
+    }
+
+
+    onAccept(){
+        const {uid} = this.props.employee;
+        this.props.employeeDelete({uid});
     }
 
     render(){
         return(
             <Card>
                 <EmployeeForm {...this.props} />
-
 
 
                 <CardSection>
@@ -54,6 +65,20 @@ class EmployeeEdit extends Component {
                     </Button>
                 </CardSection>
 
+            <CardSection>
+                <Button onPress={()=> this.setState({showModal: !this.state.showModal})}>
+                    Fire Employee
+                </Button>
+            </CardSection>
+
+            <Confirm
+            onAccept={this.onAccept.bind(this)}
+            onDecline={ this.onDecline.bind(this)}
+            visible = {this.state.showModal}
+            >
+            Are you sure you want to delete this? 
+            </Confirm>
+
             </Card>
 
         );
@@ -67,4 +92,4 @@ const mapStateToProps  = (state) => {
     return {name,phone,shift};
 }
 
-export default connect(mapStateToProps,{employeeUpdate,employeeSave})(EmployeeEdit);
+export default connect(mapStateToProps,{employeeUpdate,employeeSave,employeeDelete})(EmployeeEdit);
